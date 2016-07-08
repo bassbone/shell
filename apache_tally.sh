@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$1" = "" ]; then
-  echo "usage: $0 [access_log] [-hau]"
+  echo "usage: $0 [access_log] -[h|a|u|u1|u2]"
   exit 0
 elif [ ! -f "$1" ]; then
   echo "$1 is not found."
@@ -21,7 +21,7 @@ elif [ "$2" = "-u1" ]; then # per URI 1st hierarchy
 elif [ "$2" = "-u2" ]; then # per URI 2nd hierarchy
   cat $1|awk '{print $7}'|sed -E "s/(\/.*?)(\/.*?)\/.*$/\1\2/g"|sed -E "s/(\/.*)\/$/\1/g"|sort|uniq -c|sort -nr
 else
-  echo "usage: $0 [access_log] [-hau]"
+  echo "usage: $0 [access_log] -[h|a|u|u1|u2]"
   exit 0
 fi
 
