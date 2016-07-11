@@ -10,10 +10,10 @@ fi
 
 if [ "$2" = "-h" ]; then # per hour
   cat $1|awk '{print $4}'|cut -c14-15|awk '{print $1 "時"}'|sort|uniq -c
-  exit 0
+elif [ "$2" = "-m" ]; then # per minute
+  cat $1|awk '{print $4}'|cut -c14-18|sort|uniq -c
 elif [ "$2" = "-a" ]; then # per IP address 
   cat $1|awk '{print $1}'|sort|uniq -c|sort -nr
-  exit 0
 elif [ "$2" = "-u" ]; then # per URI
   cat $1|awk '{print $7}'|sort|uniq -c|sort -nr
 elif [ "$2" = "-u1" ]; then # per URI 1st hierarchy
@@ -24,7 +24,6 @@ elif [ "$2" = "-s" ]; then # per status code
   cat $1|awk '{print $9}'|sort|uniq -c
 else
   echo "usage: $0 [access_log] -[h|a|u|u1|u2|s]"
-  exit 0
 fi
 
 exit 0
