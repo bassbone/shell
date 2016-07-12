@@ -26,3 +26,9 @@ echo "*** iptables ***"
 iptables -L
 echo ""
 
+echo "*** crontab ***"
+crontab -l
+echo ""
+cat /etc/crontab
+echo ""
+
