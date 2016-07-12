@@ -14,7 +14,8 @@ lastlog|grep -v "Never"
 echo ""
 
 echo "*** last ***"
-last|grep -v "system boot"|grep -v "$1"
+exclude_address=`echo "$1"|sed 's/,/\\|/g'`
+last|grep -v "system boot\|wtmp"|grep -v "$exclude_address"
 echo ""
 
 echo "*** yum update check ***"
@@ -24,3 +25,4 @@ echo ""
 echo "*** iptables ***"
 iptables -L
 echo ""
+
