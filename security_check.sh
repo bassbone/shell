@@ -6,7 +6,7 @@ if [ "$1" == "" ]; then
 fi
 
 echo "*** nmap ***"
-nmap localhost
+nmap localhost|grep "open"
 echo ""
 
 echo "*** lastlog ***"
@@ -29,6 +29,22 @@ echo ""
 echo "*** crontab ***"
 crontab -l
 echo ""
-cat /etc/crontab
+cat /etc/crontab|grep -v "^#"
+echo ""
+
+echo "*** chkconfig ***"
+chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"
+echo ""
+
+echo "*** root login ***"
+ls -l /etc/securetty
+echo ""
+
+echo "*** sshd_config ***"
+cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"
+echo ""
+
+echo "*** suoders ***"
+cat /etc/sudoers|grep -v "^#"|grep -v "Defaults"|grep "ALL"
 echo ""
 
