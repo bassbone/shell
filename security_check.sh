@@ -19,7 +19,7 @@ last|grep -v "system boot\|wtmp"|grep -v "$exclude_address"
 echo ""
 
 echo "*** yum update check ***"
-yum check-update
+yum check-update|grep -v "^Loaded plugins:"
 echo ""
 
 echo "*** iptables ***"
@@ -33,7 +33,7 @@ cat /etc/crontab|grep -v "^#"
 echo ""
 
 echo "*** chkconfig ***"
-chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"
+chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"
 echo ""
 
 echo "*** root login ***"
@@ -41,7 +41,7 @@ ls -l /etc/securetty
 echo ""
 
 echo "*** sshd_config ***"
-cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"
+cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"
 echo ""
 
 echo "*** suoders ***"
