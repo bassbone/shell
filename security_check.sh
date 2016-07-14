@@ -23,13 +23,13 @@ yum check-update|grep -v "^Loaded plugins:"
 echo ""
 
 echo "*** iptables ***"
-iptables -L
+iptables -L|grep -v "^$"
 echo ""
 
 echo "*** crontab ***"
 crontab -l
 echo ""
-cat /etc/crontab|grep -v "^#"
+cat /etc/crontab|grep -v "^$"|grep -v "^#"|grep -v "^[A-Z]"
 echo ""
 
 echo "*** chkconfig ***"
@@ -46,5 +46,9 @@ echo ""
 
 echo "*** suoders ***"
 cat /etc/sudoers|grep -v "^#"|grep -v "Defaults"|grep "ALL"
+echo ""
+
+echo "*** /usr/bin ***"
+find /usr/bin/ -type f -mtime -30
 echo ""
 
