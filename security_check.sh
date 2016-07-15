@@ -6,7 +6,7 @@ if [ "$1" == "" ]; then
 fi
 
 echo "*** nmap ***"
-nmap localhost|grep "open"
+nmap -sT -sU -p 0-65535 localhost|grep "open"
 echo ""
 
 echo "*** lastlog ***"
@@ -52,3 +52,10 @@ echo "*** /usr/bin ***"
 find /usr/bin/ -type f -mtime -30
 echo ""
 
+echo "*** /usr/bin SUID ***"
+find /usr/bin -user root -perm -4000 -print
+echo ""
+
+echo "*** /usr/bin SGID ***"
+find /usr/bin -user root -perm -2000 -print
+echo ""
