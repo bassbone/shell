@@ -59,3 +59,12 @@ echo ""
 echo "*** /usr/bin SGID ***"
 find /usr/bin -user root -perm -2000 -print
 echo ""
+
+echo "*** /etc/hosts ***"
+cat /etc/hosts
+echo ""
+
+echo "*** who ***"
+who|grep -v "$1"
+echo ""
+
