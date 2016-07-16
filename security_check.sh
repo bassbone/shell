@@ -33,7 +33,7 @@ cat /etc/crontab|grep -v "^$"|grep -v "^#"|grep -v "^[A-Z]"
 echo ""
 
 echo "*** chkconfig ***"
-chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"
+chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"|grep -v "^rsyslog"|grep -v "^auditd"
 echo ""
 
 echo "*** root login ***"
@@ -41,7 +41,7 @@ ls -l /etc/securetty
 echo ""
 
 echo "*** sshd_config ***"
-cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"
+cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"|grep -v "^HostKey"
 echo ""
 
 echo "*** suoders ***"
@@ -49,15 +49,15 @@ cat /etc/sudoers|grep -v "^#"|grep -v "Defaults"|grep "ALL"
 echo ""
 
 echo "*** /usr/bin ***"
-find /usr/bin/ -type f -mtime -30
+find /usr/bin/ -type f -mtime -30|xargs
 echo ""
 
 echo "*** /usr/bin SUID ***"
-find /usr/bin -user root -perm -4000 -print
+find /usr/bin -user root -perm -4000 -print|xargs
 echo ""
 
 echo "*** /usr/bin SGID ***"
-find /usr/bin -user root -perm -2000 -print
+find /usr/bin -user root -perm -2000 -print|xargs
 echo ""
 
 echo "*** /etc/hosts ***"
