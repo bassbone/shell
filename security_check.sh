@@ -27,13 +27,13 @@ iptables -L|grep -v "^$"
 echo ""
 
 echo "*** crontab ***"
-crontab -l
+crontab -l|grep -v "^no crontab for"
 echo ""
 cat /etc/crontab|grep -v "^$"|grep -v "^#"|grep -v "^[A-Z]"
 echo ""
 
 echo "*** chkconfig ***"
-chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"|grep -v "^rsyslog"|grep -v "^auditd"
+chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"|grep -v "^rsyslog"|grep -v "^auditd"|grep -v "^atd"
 echo ""
 
 echo "*** root login ***"
@@ -41,7 +41,7 @@ ls -l /etc/securetty
 echo ""
 
 echo "*** sshd_config ***"
-cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"|grep -v "^HostKey"
+cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"|grep -v "^HostKey"|grep -v "^AuthorizedKeysFile"
 echo ""
 
 echo "*** suoders ***"
