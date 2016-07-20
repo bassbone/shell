@@ -33,7 +33,7 @@ cat /etc/crontab|grep -v "^$"|grep -v "^#"|grep -v "^[A-Z]"
 echo ""
 
 echo "*** chkconfig ***"
-chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"|grep -v "^rsyslog"|grep -v "^auditd"|grep -v "^atd"
+chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd"|grep -v "^ntpd"|grep -v "^crond"|grep -v "^rsyslog"|grep -v "^auditd"|grep -v "^atd"|grep -v "^irqbalance" 
 echo ""
 
 echo "*** root login ***"
