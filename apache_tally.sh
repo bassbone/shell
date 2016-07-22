@@ -25,7 +25,7 @@ elif [ "$2" = "-s" ]; then # per status code
 elif [ "$2" = "-rh" ]; then # per referer host
   cat $1|grep "$3"|awk '{print $11}'|sed -r "s/^.*\/\/([^\/]*).*$/\1/"|sort|uniq -c|sort -nr
 else
-  echo "usage: $0 [access_log] -[h|m|a|u|u1|u2|s] [filter]"
+  echo "usage: $0 [access_log] -[h|m|a|u|u1|u2|s|rh] [filter]"
 fi
 
 exit 0
