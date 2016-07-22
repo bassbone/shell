@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$1" = "" ]; then
-  echo "usage: $0 [access_log] -[h|m|a|u|u1|u2|s] [filter]"
+  echo "usage: $0 [access_log] -[h|m|a|u|u1|u2|s|rh] [filter]"
   exit 0
 elif [ ! -f "$1" ]; then
   echo "$1 is not found."
@@ -22,6 +22,8 @@ elif [ "$2" = "-u2" ]; then # per URI 2nd hierarchy
   cat $1|grep "$3"|awk '{print $7}'|sed "s/?.*$//g"|sed -r "s/(\/[^\/]*)(\/[^\/]*)\/.*$/\1\2/g"|sort|uniq -c|sort -nr
 elif [ "$2" = "-s" ]; then # per status code
   cat $1|grep "$3"|awk '{print $9}'|sort|uniq -c
+elif [ "$2" = "-rh" ]; then # per referer host
+  cat $1|grep "$3"|awk '{print $11}'|sed -r "s/^.*\/\/([^\/]*).*$/\1/"|sort|uniq -c|sort -nr
 else
   echo "usage: $0 [access_log] -[h|m|a|u|u1|u2|s] [filter]"
 fi
