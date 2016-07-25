@@ -41,7 +41,7 @@ ls -l /etc/securetty
 echo ""
 
 echo "*** sshd_config ***"
-cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep -v "^AcceptEnv"|grep -v "^HostKey"|grep -v "^AuthorizedKeysFile"
+cat /etc/ssh/sshd_config|grep -v "^#"|grep -v "^$"|grep "^PermitRootLogin"|sed "s/\(PermitRootLogin\s*yes\)/\1 NG!!!/g"
 echo ""
 
 echo "*** suoders ***"
