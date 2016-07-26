@@ -19,7 +19,7 @@ last|grep -v "system boot\|wtmp"|grep -v "$exclude_address"
 echo ""
 
 echo "*** yum update check ***"
-yum check-update|grep -v "^Loaded plugins:"
+yum check-update|grep -v "^Loaded plugins:"|grep -v "packages excluded due to repository priority protections"
 echo ""
 
 echo "*** iptables ***"
