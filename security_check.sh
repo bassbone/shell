@@ -37,6 +37,11 @@ chkconfig --list|grep 3:on|grep -v "^network"|grep -v "^iptables"|grep -v "^sshd
 echo ""
 
 echo "*** root login ***"
+if [ -e /etc/securetty ];then
+    echo "disable"
+else
+    echo "enable"
+fi
 ls -l /etc/securetty
 echo ""
 
