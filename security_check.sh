@@ -73,3 +73,7 @@ echo "*** who ***"
 who|grep -v "$1"
 echo ""
 
+echo "*** /etc owner ***"
+ls -l|grep -v "total"|grep -v " root "
+echo ""
+
